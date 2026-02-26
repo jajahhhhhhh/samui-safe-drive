@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import {
   View, Text, StyleSheet, FlatList, Pressable,
-  Platform, Modal, TextInput, RefreshControl,
+  Platform, TextInput, RefreshControl,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -148,7 +148,7 @@ function TripDetail({ trip, onClose, onRate }: { trip: Trip; onClose: () => void
                   ))}
                 </View>
                 {(trip.ratingComment || comment) ? (
-                  <Text style={detailStyles.ratedComment}>"{trip.ratingComment || comment}"</Text>
+                  <Text style={detailStyles.ratedComment}>&quot;{trip.ratingComment || comment}&quot;</Text>
                 ) : null}
               </View>
             )}
@@ -163,7 +163,7 @@ function TripDetail({ trip, onClose, onRate }: { trip: Trip; onClose: () => void
 
 export default function ActivityScreen() {
   const insets = useSafeAreaInsets();
-  const { trips, rateTrip, refreshTrips, isLoading } = useTrips();
+  const { trips, rateTrip, refreshTrips } = useTrips();
   const [selectedTrip, setSelectedTrip] = useState<Trip | null>(null);
   const [refreshing, setRefreshing] = useState(false);
 

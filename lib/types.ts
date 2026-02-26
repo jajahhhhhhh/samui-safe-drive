@@ -90,6 +90,54 @@ export interface DriverRegistration {
   createdAt: string;
 }
 
+export type PropertyType = 'vacation_rental' | 'apartment' | 'house' | 'condo' | 'hotel' | 'villa';
+
+export interface Review {
+  id: string;
+  authorName: string;
+  rating: number;
+  comment: string;
+  date: string;
+}
+
+export interface Property {
+  id: string;
+  title: string;
+  description: string;
+  propertyType: PropertyType;
+  zone: Zone;
+  price: number;
+  currency: string;
+  address: string;
+  latitude?: number;
+  longitude?: number;
+  photos: string[];
+  amenities: string[];
+  rating: number;
+  ratingCount: number;
+  reviews: Review[];
+  ownerName: string;
+  ownerPhone: string;
+  ownerEmail: string;
+  ownerPhotoUrl?: string;
+  createdAt: string;
+  updatedAt: string;
+  // Phase 2: Facebook import fields
+  source?: 'mock' | 'facebook' | 'other';
+  importedAt?: string;
+  facebookPostUrl?: string;
+  groupName?: string;
+  groupId?: string;
+  priceHistory?: Array<{price: number; date: string; source: string}>;
+}
+
+export interface PropertyImportResult {
+  success: boolean;
+  property?: Partial<Property>;
+  errors: string[];
+  confidence: number;
+}
+
 export const PRICING_RULES: PricingRule[] = [
   { zone: 'chaweng', baseFare: 80, perKmRate: 15, minFare: 100, surgeMultiplier: 1.0 },
   { zone: 'lamai', baseFare: 80, perKmRate: 15, minFare: 100, surgeMultiplier: 1.0 },

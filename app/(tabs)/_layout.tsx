@@ -3,8 +3,7 @@ import { Tabs } from "expo-router";
 import { NativeTabs, Icon, Label } from "expo-router/unstable-native-tabs";
 import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
-import { Platform, StyleSheet, useColorScheme, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Platform, StyleSheet, View } from "react-native";
 import React from "react";
 import Colors from "@/constants/colors";
 
@@ -19,6 +18,10 @@ function NativeTabLayout() {
         <Icon sf={{ default: "clock", selected: "clock.fill" }} />
         <Label>Activity</Label>
       </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="properties">
+        <Icon sf={{ default: "building.2", selected: "building.2.fill" }} />
+        <Label>Properties</Label>
+      </NativeTabs.Trigger>
       <NativeTabs.Trigger name="profile">
         <Icon sf={{ default: "person", selected: "person.fill" }} />
         <Label>Profile</Label>
@@ -28,11 +31,8 @@ function NativeTabLayout() {
 }
 
 function ClassicTabLayout() {
-  const colorScheme = useColorScheme();
-  const isDark = true;
   const isWeb = Platform.OS === "web";
   const isIOS = Platform.OS === "ios";
-  const safeAreaInsets = useSafeAreaInsets();
 
   return (
     <Tabs
@@ -75,6 +75,15 @@ function ClassicTabLayout() {
           title: "Activity",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="time-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="properties"
+        options={{
+          title: "Properties",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" size={size} color={color} />
           ),
         }}
       />

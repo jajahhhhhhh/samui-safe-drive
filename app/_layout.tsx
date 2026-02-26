@@ -8,6 +8,7 @@ import { useFonts, Inter_400Regular, Inter_600SemiBold, Inter_700Bold } from "@e
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { queryClient } from "@/lib/query-client";
 import { TripProvider } from "@/lib/trip-context";
+import { PropertyProvider } from "@/lib/property-context";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -40,11 +41,13 @@ export default function RootLayout() {
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <TripProvider>
-          <GestureHandlerRootView>
-            <KeyboardProvider>
-              <RootLayoutNav />
-            </KeyboardProvider>
-          </GestureHandlerRootView>
+          <PropertyProvider>
+            <GestureHandlerRootView>
+              <KeyboardProvider>
+                <RootLayoutNav />
+              </KeyboardProvider>
+            </GestureHandlerRootView>
+          </PropertyProvider>
         </TripProvider>
       </QueryClientProvider>
     </ErrorBoundary>

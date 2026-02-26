@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { TripStatus } from '@/lib/types';
-import Colors from '@/constants/colors';
 
 const STATUS_CONFIG: Record<TripStatus, { label: string; bg: string; text: string }> = {
   searching: { label: 'Searching', bg: '#3D3200', text: '#FFC043' },
